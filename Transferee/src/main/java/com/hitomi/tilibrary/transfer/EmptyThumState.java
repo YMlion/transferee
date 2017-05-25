@@ -32,11 +32,13 @@ class EmptyThumState extends TransferState {
 
     @Override
     public TransferImage createTransferIn(final int position) {
-        ImageView originImage = transfer.getTransConfig()
-                .getOriginImageList().get(position);
+        ImageInfo originImage = transfer.getTransConfig()
+                .getImageInfos().get(position);
 
         TransferImage transImage = createTransferImage(originImage);
-        transImage.setImageDrawable(originImage.getDrawable());
+//        transImage.setImageDrawable(originImage.getDrawable());
+        // TODO: 2017/5/25 显示默认图片
+        transImage.setImageDrawable(transfer.getTransConfig().getMissDrawable(transImage.getContext()));
         transImage.transformIn(TransferImage.STAGE_TRANSLATE);
         transfer.addView(transImage, 1);
 
@@ -86,7 +88,7 @@ class EmptyThumState extends TransferState {
                                 progressIndicator.onFinish(position); // onFinish 只是说明下载完毕，并没更新图像
 
                                 targetImage.transformIn(TransferImage.STAGE_SCALE);
-                                targetImage.enable();
+//                                targetImage.enable();
                                 transfer.bindOnDismissListener(targetImage, position);
                                 break;
                             case ImageLoader.STATUS_DISPLAY_FAILED:  // 加载失败，显示加载错误的占位图
@@ -102,7 +104,7 @@ class EmptyThumState extends TransferState {
         TransferImage transImage = null;
 
         TransferConfig config = transfer.getTransConfig();
-        List<ImageView> originImageList = config.getOriginImageList();
+        List<ImageInfo> originImageList = config.getImageInfos();
 
         if (position < originImageList.size()) {
             transImage = createTransferImage(

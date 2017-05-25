@@ -1,14 +1,12 @@
 package com.hitomi.transferimage.activity.glide;
 
+import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.hitomi.glideloader.GlideImageLoader;
-import com.hitomi.tilibrary.style.progress.ProgressBarIndicator;
-import com.hitomi.tilibrary.transfer.TransferConfig;
-import com.hitomi.tilibrary.transfer.Transferee;
+import com.hitomi.tilibrary.transfer.ImageInfo;
 import com.hitomi.transferimage.R;
 import com.hitomi.transferimage.activity.BaseActivity;
 
@@ -78,13 +76,14 @@ public class TouchMoveActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
 
-            transferee.apply(TransferConfig.build()
+            /*transferee.apply(TransferConfig.build()
                     .setImageLoader(GlideImageLoader.with(getApplicationContext()))
                     .setMissPlaceHolder(R.mipmap.ic_empty_photo)
-                    .setOriginImageList(imageViewList)
+//                    .setOriginImageList(imageViewList)
+                    .setImageInfos(ImageInfo.getImageInfos(imageViewList))
                     .setSourceImageList(imageStrList)
                     .setNowThumbnailIndex(imageViewList.indexOf(v))
-                    .setProgressIndicator(new ProgressBarIndicator())
+                    .setProgressIndicator(new ProgressPieIndicator())
                     .setJustLoadHitImage(true)
                     .create())
                     .show(new Transferee.OnTransfereeStateChangeListener() {
@@ -97,7 +96,13 @@ public class TouchMoveActivity extends BaseActivity {
                         public void onDismiss() {
                             Glide.with(TouchMoveActivity.this).resumeRequests();
                         }
-                    });
+                    });*/
+            Intent intent = new Intent(TouchMoveActivity.this, PicturePreviewActivity.class);
+            intent.putExtra("index", imageViewList.indexOf(v));
+            intent.putStringArrayListExtra("sourceList", (ArrayList<String>) imageStrList);
+            intent.putParcelableArrayListExtra("imageInfos", (ArrayList<ImageInfo>) ImageInfo.getImageInfos(imageViewList));
+            startActivity(intent);
+            overridePendingTransition(R.anim.scale_center, android.R.anim.fade_out);
         }
     }
 

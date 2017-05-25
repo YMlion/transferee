@@ -15,6 +15,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.github.chrisbanes.photoview.PhotoView;
+
 /**
  * TransferImage 主要功能：<br/>
  * <p>

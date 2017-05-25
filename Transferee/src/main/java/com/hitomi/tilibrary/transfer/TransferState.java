@@ -4,9 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.view.View;
+import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.hitomi.tilibrary.loader.ImageLoader;
 import com.hitomi.tilibrary.view.image.TransferImage;
@@ -36,6 +35,7 @@ abstract class TransferState {
     TransferState(TransferLayout transfer) {
         this.transfer = transfer;
         this.context = transfer.getContext();
+        Log.e("TransferState", "TransferState: " + getClass().getSimpleName());
     }
 
     /**
@@ -69,31 +69,18 @@ abstract class TransferState {
     }
 
     /**
-     * 获取 View 在屏幕坐标系中的坐标
-     *
-     * @param view 需要定位位置的 View
-     * @return 坐标系数组
-     */
-    protected int[] getViewLocation(View view) {
-        int[] location = new int[2];
-        view.getLocationInWindow(location);
-        return location;
-    }
-
-    /**
      * 依据 originImage 在屏幕中的坐标和宽高信息创建一个 TransferImage
      *
-     * @param originImage 缩略图 ImageView
+     * @param originImageInfo 缩略图 ImageView info
      * @return TransferImage
      */
     @NonNull
-    protected TransferImage createTransferImage(ImageView originImage) {
-        int[] location = getViewLocation(originImage);
+    protected TransferImage createTransferImage(ImageInfo originImageInfo) {
 
         TransferImage transImage = new TransferImage(context);
         transImage.setScaleType(FIT_CENTER);
-        transImage.setOriginalInfo(location[0], getTransImageLocalY(location[1]),
-                originImage.getWidth(), originImage.getHeight());
+        transImage.setOriginalInfo(originImageInfo.locationX, getTransImageLocalY(originImageInfo.locationY),
+                originImageInfo.width, originImageInfo.height);
         transImage.setDuration(transfer.getTransConfig().getDuration());
         transImage.setLayoutParams(new FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT));
         transImage.setOnTransferListener(transfer.getTransListener());
@@ -105,7 +92,7 @@ abstract class TransferState {
      * 加载 imageUrl 所关联的图片到 TransferImage 并启动 TransferImage 中的过渡动画
      *
      * @param imageUrl   当前缩略图路径
-     * @param transImage {@link #createTransferImage(ImageView)} 方法创建的 TransferImage
+     * @param transImage {@link #createTransferImage(ImageInfo)} 方法创建的 TransferImage
      * @param in         true : 从缩略图到高清图动画, false : 从到高清图到缩略图动画
      */
     protected void transformThumbnail(String imageUrl, final TransferImage transImage, final boolean in) {

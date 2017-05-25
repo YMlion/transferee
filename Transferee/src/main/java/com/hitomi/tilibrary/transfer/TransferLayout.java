@@ -164,7 +164,9 @@ class TransferLayout extends FrameLayout {
         loadedIndexSet.clear();
         removeIndexIndicator();
         removeAllViews();
-        layoutResetListener.onReset();
+        if (layoutResetListener != null) {
+            layoutResetListener.onReset();
+        }
     }
 
     /**

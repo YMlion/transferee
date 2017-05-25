@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.hitomi.glideloader.GlideImageLoader;
 import com.hitomi.tilibrary.style.progress.ProgressPieIndicator;
+import com.hitomi.tilibrary.transfer.ImageInfo;
 import com.hitomi.tilibrary.transfer.TransferConfig;
 import com.hitomi.tilibrary.transfer.Transferee;
 import com.hitomi.transferimage.R;
@@ -71,7 +72,8 @@ public class GlideNoThumActivity extends BaseActivity {
                             .setNowThumbnailIndex(position)
                             .setSourceImageList(sourceImageList)
                             .setMissPlaceHolder(R.mipmap.ic_empty_photo)
-                            .setOriginImageList(wrapOriginImageViewList(sourceImageList.size()))
+//                            .setOriginImageList(wrapOriginImageViewList(sourceImageList.size()))
+                            .setImageInfos(ImageInfo.getImageInfos(wrapOriginImageViewList(sourceImageList.size())))
                             .setProgressIndicator(new ProgressPieIndicator())
                             .setImageLoader(GlideImageLoader.with(getApplicationContext()))
                             .create();

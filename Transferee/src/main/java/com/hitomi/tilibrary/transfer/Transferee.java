@@ -9,8 +9,8 @@ import android.view.KeyEvent;
 
 import com.hitomi.tilibrary.loader.ImageLoader;
 import com.hitomi.tilibrary.loader.NoneImageLoader;
-import com.hitomi.tilibrary.style.index.CircleIndexIndicator;
-import com.hitomi.tilibrary.style.progress.ProgressBarIndicator;
+import com.hitomi.tilibrary.style.index.NumberIndexIndicator;
+import com.hitomi.tilibrary.style.progress.ProgressPieIndicator;
 
 /**
  * Main workflow: <br/>
@@ -100,9 +100,6 @@ public class Transferee implements DialogInterface.OnShowListener,
         if (transConfig.isSourceEmpty())
             throw new IllegalArgumentException("the parameter sourceImageList can't be empty");
 
-        if (transConfig.getNowThumbnailIndex() >= transConfig.getOriginImageList().size())
-            throw new IllegalArgumentException("the parameter nowThumbnailIndex will generate an IndexOutOfBoundsException error");
-
         transConfig.setNowThumbnailIndex(transConfig.getNowThumbnailIndex() < 0
                 ? 0 : transConfig.getNowThumbnailIndex());
 
@@ -113,10 +110,10 @@ public class Transferee implements DialogInterface.OnShowListener,
                 ? 300 : transConfig.getDuration());
 
         transConfig.setProgressIndicator(transConfig.getProgressIndicator() == null
-                ? new ProgressBarIndicator() : transConfig.getProgressIndicator());
+                ? new ProgressPieIndicator() : transConfig.getProgressIndicator());
 
         transConfig.setIndexIndicator(transConfig.getIndexIndicator() == null
-                ? new CircleIndexIndicator() : transConfig.getIndexIndicator());
+                ? new NumberIndexIndicator() : transConfig.getIndexIndicator());
 
         transConfig.setImageLoader(transConfig.getImageLoader() == null
                 ? new NoneImageLoader() : transConfig.getImageLoader());

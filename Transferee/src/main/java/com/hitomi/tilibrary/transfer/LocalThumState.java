@@ -1,7 +1,6 @@
 package com.hitomi.tilibrary.transfer;
 
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
 
 import com.hitomi.tilibrary.loader.ImageLoader;
 import com.hitomi.tilibrary.view.image.TransferImage;
@@ -45,7 +44,7 @@ class LocalThumState extends TransferState {
         TransferConfig config = transfer.getTransConfig();
 
         TransferImage transImage = createTransferImage(
-                config.getOriginImageList().get(position));
+                config.getImageInfos().get(position));
         transformThumbnail(config.getSourceImageList().get(position), transImage, true);
         transfer.addView(transImage, 1);
 
@@ -99,7 +98,7 @@ class LocalThumState extends TransferState {
                         if (TransferImage.STATE_TRANS_CLIP == targetImage.getState())
                             targetImage.transformIn(TransferImage.STAGE_SCALE);
                         // 启用 TransferImage 的手势缩放功能
-                        targetImage.enable();
+//                        targetImage.enable();
                         // 绑定点击关闭 Transferee
                         transfer.bindOnDismissListener(targetImage, position);
                         break;
@@ -116,7 +115,7 @@ class LocalThumState extends TransferState {
         TransferImage transImage = null;
 
         TransferConfig config = transfer.getTransConfig();
-        List<ImageView> originImageList = config.getOriginImageList();
+        List<ImageInfo> originImageList = config.getImageInfos();
 
         if (position < originImageList.size()) {
             transImage = createTransferImage(

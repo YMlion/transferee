@@ -1,7 +1,6 @@
 package com.hitomi.tilibrary.transfer;
 
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
 
 import com.hitomi.tilibrary.loader.ImageLoader;
 import com.hitomi.tilibrary.style.IProgressIndicator;
@@ -49,7 +48,7 @@ class RemoteThumState extends TransferState {
         TransferConfig config = transfer.getTransConfig();
 
         TransferImage transImage = createTransferImage(
-                config.getOriginImageList().get(position));
+                config.getImageInfos().get(position));
         transformThumbnail(config.getThumbnailImageList().get(position), transImage, true);
         transfer.addView(transImage, 1);
 
@@ -116,7 +115,7 @@ class RemoteThumState extends TransferState {
                             case ImageLoader.STATUS_DISPLAY_SUCCESS:
                                 progressIndicator.onFinish(position); // onFinish 只是说明下载完毕，并没更新图像
                                 // 启用 TransferImage 的手势缩放功能
-                                targetImage.enable();
+//                                targetImage.enable();
                                 // 绑定点击关闭 Transferee
                                 transfer.bindOnDismissListener(targetImage, position);
                                 break;
@@ -133,7 +132,7 @@ class RemoteThumState extends TransferState {
         TransferImage transImage = null;
 
         TransferConfig config = transfer.getTransConfig();
-        List<ImageView> originImageList = config.getOriginImageList();
+        List<ImageInfo> originImageList = config.getImageInfos();
 
         if (position < originImageList.size()) {
             transImage = createTransferImage(

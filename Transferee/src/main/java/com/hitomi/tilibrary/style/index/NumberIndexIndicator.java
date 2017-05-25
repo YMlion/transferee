@@ -25,8 +25,8 @@ public class NumberIndexIndicator implements IIndexIndicator {
     @Override
     public void attach(FrameLayout parent) {
         FrameLayout.LayoutParams indexLp = new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-        indexLp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
-        indexLp.topMargin = 30;
+        indexLp.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        indexLp.bottomMargin = 30;
 
         numberIndicator = new NumberIndicator(parent.getContext());
         numberIndicator.setLayoutParams(indexLp);

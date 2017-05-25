@@ -37,6 +37,8 @@
             android:name=".activity.universal.UniversalNoThumActivity"
             android:label="UniversalLoader 测试(没缩略图)"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.glide.PicturePreviewActivity"
+                android:theme="@style/PictureTheme"/>
     </application>
 
 </manifest>

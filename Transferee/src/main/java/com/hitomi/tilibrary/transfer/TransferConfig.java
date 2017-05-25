@@ -8,6 +8,7 @@ import com.hitomi.tilibrary.loader.ImageLoader;
 import com.hitomi.tilibrary.style.IIndexIndicator;
 import com.hitomi.tilibrary.style.IProgressIndicator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,16 @@ public class TransferConfig {
     private IProgressIndicator progressIndicator;
     private IIndexIndicator indexIndicator;
     private ImageLoader imageLoader;
+
+    public List<ImageInfo> getImageInfos() {
+        return imageInfos;
+    }
+
+    public void setImageInfos(List<ImageInfo> imageInfos) {
+        this.imageInfos = imageInfos;
+    }
+
+    private List<ImageInfo> imageInfos;
 
     public static Builder build() {
         return new Builder();
@@ -109,7 +120,7 @@ public class TransferConfig {
     }
 
     public List<ImageView> getOriginImageList() {
-        return originImageList;
+        return originImageList == null ? new ArrayList<ImageView>() : originImageList;
     }
 
     public void setOriginImageList(List<ImageView> originImageList) {
@@ -188,6 +199,7 @@ public class TransferConfig {
         private List<ImageView> originImageList;
         private List<String> sourceImageList;
         private List<String> thumbnailImageList;
+        private List<ImageInfo> imageInfos;
 
         private IProgressIndicator progressIndicator;
         private IIndexIndicator indexIndicator;
@@ -261,6 +273,11 @@ public class TransferConfig {
             return this;
         }
 
+        public Builder setImageInfos(List<ImageInfo> imageInfos) {
+            this.imageInfos = imageInfos;
+            return this;
+        }
+
         /**
          * 原始的 ImageView 集合
          */
@@ -328,6 +345,7 @@ public class TransferConfig {
             config.setOriginImageList(originImageList);
             config.setSourceImageList(sourceImageList);
             config.setThumbnailImageList(thumbnailImageList);
+            config.setImageInfos(imageInfos);
 
             config.setProgressIndicator(progressIndicator);
             config.setIndexIndicator(indexIndicator);
