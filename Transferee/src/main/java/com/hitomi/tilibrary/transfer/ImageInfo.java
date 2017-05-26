@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by duoyi on 2017/5/25.
+ * created by ylm on 2017/05/24
  */
-
 public class ImageInfo implements Parcelable {
     public int locationX;
     public int locationY;

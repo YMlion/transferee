@@ -17,9 +17,8 @@ import com.hitomi.tilibrary.style.progress.ProgressPieIndicator;
  * 3、加载完成显示高清图片 <br/>
  * 4、高清图支持手势缩放 <br/>
  * 5、关闭 transferee 展示 transferee 到原缩略图的过渡动画 <br/>
- * Created by hitomi on 2017/1/19.
- * <p>
- * email: 196425254@qq.com
+ * /**
+ * created by ylm on 2017/05/24
  */
 public class TransfereeActivity extends AppCompatActivity implements TransferLayout.OnLayoutResetListener {
 

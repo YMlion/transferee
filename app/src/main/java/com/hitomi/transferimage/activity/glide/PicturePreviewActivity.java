@@ -18,13 +18,16 @@ import com.hitomi.transferimage.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * created by ylm on 2017/05/24
+ */
 public class PicturePreviewActivity extends TransfereeActivity implements View.OnClickListener {
 
     @Override
     protected void addOtherViews(ViewGroup parent) {
         View titleBar = LayoutInflater.from(this).inflate(R.layout.title_bar, parent, false);
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp.topMargin = 60;
+        lp.topMargin = 75;
         lp.gravity = Gravity.TOP;
         titleBar.setLayoutParams(lp);
         parent.addView(titleBar);

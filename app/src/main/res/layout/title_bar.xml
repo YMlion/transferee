@@ -14,7 +14,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:id="@+id/tv_preview_back"/>
 
     <TextView
@@ -27,6 +27,6 @@
             android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_alignParentEnd="true"/>
 </RelativeLayout>
