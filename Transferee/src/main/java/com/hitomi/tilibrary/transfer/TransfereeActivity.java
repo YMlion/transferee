@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.view.ViewGroup;
 
 import com.hitomi.tilibrary.loader.NoneImageLoader;
 import com.hitomi.tilibrary.style.index.NumberIndexIndicator;
@@ -37,12 +37,12 @@ public class TransfereeActivity extends AppCompatActivity implements TransferLay
         transLayout = new TransferLayout(this);
         transLayout.setOnLayoutResetListener(this);
         transLayout.setBackgroundColor(Color.TRANSPARENT);
-        addOtherViews(transLayout);
         setTransConfig(initTransConfig());
         transLayout.show();
+        addOtherViews(transLayout);
     }
 
-    protected void addOtherViews(View parent) {
+    protected void addOtherViews(ViewGroup parent) {
 
     }
 
@@ -91,7 +91,7 @@ public class TransfereeActivity extends AppCompatActivity implements TransferLay
     /**
      * 关闭 transferee
      */
-    private void dismiss() {
+    protected void dismiss() {
         transLayout.dismiss(transConfig.getNowThumbnailIndex());
     }
 

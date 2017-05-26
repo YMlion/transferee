@@ -1,8 +1,12 @@
 package com.hitomi.transferimage.activity.glide;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.hitomi.glideloader.GlideImageLoader;
 import com.hitomi.tilibrary.style.progress.ProgressPieIndicator;
@@ -14,15 +18,18 @@ import com.hitomi.transferimage.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PicturePreviewActivity extends TransfereeActivity {
+public class PicturePreviewActivity extends TransfereeActivity implements View.OnClickListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void addOtherViews(View parent) {
+    protected void addOtherViews(ViewGroup parent) {
+        View titleBar = LayoutInflater.from(this).inflate(R.layout.title_bar, parent, false);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.topMargin = 60;
+        lp.gravity = Gravity.TOP;
+        titleBar.setLayoutParams(lp);
+        parent.addView(titleBar);
+        titleBar.findViewById(R.id.tv_preview_back).setOnClickListener(this);
+        titleBar.findViewById(R.id.tv_preview_operation).setOnClickListener(this);
     }
 
     @Override
@@ -41,5 +48,17 @@ public class PicturePreviewActivity extends TransfereeActivity {
                 .setProgressIndicator(new ProgressPieIndicator())
                 .setJustLoadHitImage(true)
                 .create();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_preview_back:
+                dismiss();
+                break;
+            case R.id.tv_preview_operation:
+                Snackbar.make(v, "干点什么", Snackbar.LENGTH_SHORT).setAction("关闭", null).show();
+                break;
+        }
     }
 }
