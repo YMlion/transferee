@@ -1,5 +1,6 @@
 package com.hitomi.tilibrary.transfer;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.widget.ImageView;
@@ -36,9 +37,12 @@ class EmptyThumState extends TransferState {
                 .getImageInfos().get(position);
 
         TransferImage transImage = createTransferImage(originImage);
-//        transImage.setImageDrawable(originImage.getDrawable());
-        // TODO: 2017/5/25 显示默认图片
-        transImage.setImageDrawable(transfer.getTransConfig().getMissDrawable(transImage.getContext()));
+        Bitmap bitmap = transfer.getTransConfig().getFirstBitmap();
+        if (bitmap != null) {
+            transImage.setImageBitmap(bitmap);
+        } else {
+            transImage.setImageDrawable(transfer.getTransConfig().getMissDrawable(transImage.getContext()));
+        }
         transImage.transformIn(TransferImage.STAGE_TRANSLATE);
         transfer.addView(transImage, 1);
 
@@ -152,11 +156,18 @@ class EmptyThumState extends TransferState {
 
         Drawable placeHolder = getPlacHolder(position);
         int[] clipSize = new int[2];
+        if (position < config.getImageInfos().size()) {
+            ImageInfo info = config.getImageInfos().get(position);
+            clipSize[0] = info.width;
+            clipSize[1] = info.height;
+        }
+/*
         if (position < config.getOriginImageList().size()) {
             ImageView originImage = config.getOriginImageList().get(position);
             clipSize[0] = originImage.getWidth();
             clipSize[1] = originImage.getHeight();
         }
+*/
 
         clipTargetImage(targetImage, placeHolder, clipSize);
         return placeHolder;

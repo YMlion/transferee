@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.hitomi.tilibrary.style.index.NumberIndexIndicator;
 import com.hitomi.tilibrary.style.progress.ProgressPieIndicator;
+import com.hitomi.tilibrary.transfer.ImageInfo;
 import com.hitomi.tilibrary.transfer.TransferConfig;
 import com.hitomi.transferimage.R;
 import com.hitomi.transferimage.activity.BaseActivity;
@@ -116,6 +117,7 @@ public class UniversalNormalActivity extends BaseActivity {
                         .setMissPlaceHolder(R.mipmap.ic_empty_photo)
                         .setErrorPlaceHolder(R.mipmap.ic_empty_photo)
                         .setOriginImageList(wrapOriginImageViewList(thumbnailImageList.size()))
+                        .setImageInfos(ImageInfo.getImageInfos(wrapOriginImageViewList(thumbnailImageList.size())))
                         .setProgressIndicator(new ProgressPieIndicator())
                         .setIndexIndicator(new NumberIndexIndicator())
                         .setJustLoadHitImage(true)

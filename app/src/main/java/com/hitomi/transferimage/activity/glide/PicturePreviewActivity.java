@@ -1,6 +1,7 @@
 package com.hitomi.transferimage.activity.glide;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -41,12 +42,14 @@ public class PicturePreviewActivity extends TransfereeActivity implements View.O
         ArrayList<String> imageStrList = intent.getStringArrayListExtra("sourceList");
         int index = intent.getIntExtra("index", 0);
         List<ImageInfo> imageInfos = intent.getParcelableArrayListExtra("imageInfos");
+        Bitmap bitmap = intent.getParcelableExtra("bitmap");
         return TransferConfig.build()
                 .setImageLoader(GlideImageLoader.with(getApplicationContext()))
                 .setImageInfos(imageInfos)
                 .setMissPlaceHolder(R.mipmap.ic_empty_photo)
                 .setSourceImageList(imageStrList)
                 .setDuration(450)
+                .setFirstBitmap(bitmap)
                 .setNowThumbnailIndex(index)
                 .setProgressIndicator(new ProgressPieIndicator())
                 .setJustLoadHitImage(true)

@@ -1,6 +1,7 @@
 package com.hitomi.tilibrary.transfer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
@@ -36,6 +37,8 @@ public class TransferConfig {
     private IProgressIndicator progressIndicator;
     private IIndexIndicator indexIndicator;
     private ImageLoader imageLoader;
+
+    private Bitmap firstBitmap;
 
     public List<ImageInfo> getImageInfos() {
         return imageInfos;
@@ -81,6 +84,14 @@ public class TransferConfig {
 
     public void setErrorPlaceHolder(int errorPlaceHolder) {
         this.errorPlaceHolder = errorPlaceHolder;
+    }
+
+    public Bitmap getFirstBitmap() {
+        return firstBitmap;
+    }
+
+    public void setFirstBitmap(Bitmap firstBitmap) {
+        this.firstBitmap = firstBitmap;
     }
 
     public long getDuration() {
@@ -205,6 +216,8 @@ public class TransferConfig {
         private IIndexIndicator indexIndicator;
         private ImageLoader imageLoader;
 
+        private Bitmap firstBitmap;
+
         /**
          * 当前缩略图在所有图片中的索引
          */
@@ -238,6 +251,11 @@ public class TransferConfig {
          */
         public Builder setErrorPlaceHolder(int errorPlaceHolder) {
             this.errorPlaceHolder = errorPlaceHolder;
+            return this;
+        }
+
+        public Builder setFirstBitmap(Bitmap firstBitmap) {
+            this.firstBitmap = firstBitmap;
             return this;
         }
 
@@ -350,6 +368,8 @@ public class TransferConfig {
             config.setProgressIndicator(progressIndicator);
             config.setIndexIndicator(indexIndicator);
             config.setImageLoader(imageLoader);
+
+            config.setFirstBitmap(firstBitmap);
 
             return config;
         }

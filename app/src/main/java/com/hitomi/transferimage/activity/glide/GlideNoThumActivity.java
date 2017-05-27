@@ -1,5 +1,6 @@
 package com.hitomi.transferimage.activity.glide;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ public class GlideNoThumActivity extends BaseActivity {
 
             Glide.with(GlideNoThumActivity.this)
                     .load(item)
+                    .asBitmap()
                     .centerCrop()
                     .placeholder(R.mipmap.ic_empty_photo)
                     .into(imageView);
@@ -72,6 +74,7 @@ public class GlideNoThumActivity extends BaseActivity {
                             .setNowThumbnailIndex(position)
                             .setSourceImageList(sourceImageList)
                             .setMissPlaceHolder(R.mipmap.ic_empty_photo)
+                            .setFirstBitmap(((BitmapDrawable) ((ImageView) v).getDrawable()).getBitmap())
 //                            .setOriginImageList(wrapOriginImageViewList(sourceImageList.size()))
                             .setImageInfos(ImageInfo.getImageInfos(wrapOriginImageViewList(sourceImageList.size())))
                             .setProgressIndicator(new ProgressPieIndicator())

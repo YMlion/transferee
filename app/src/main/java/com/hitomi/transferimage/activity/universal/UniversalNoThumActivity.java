@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.hitomi.tilibrary.style.index.NumberIndexIndicator;
 import com.hitomi.tilibrary.style.progress.ProgressBarIndicator;
+import com.hitomi.tilibrary.transfer.ImageInfo;
 import com.hitomi.tilibrary.transfer.TransferConfig;
 import com.hitomi.transferimage.R;
 import com.hitomi.transferimage.activity.BaseActivity;
@@ -80,6 +81,7 @@ public class UniversalNoThumActivity extends BaseActivity {
                             .setMissPlaceHolder(R.mipmap.ic_empty_photo)
                             .setErrorPlaceHolder(R.mipmap.ic_empty_photo)
                             .setOriginImageList(wrapOriginImageViewList(sourceImageList.size()))
+                            .setImageInfos(ImageInfo.getImageInfos(wrapOriginImageViewList(sourceImageList.size())))
                             .setProgressIndicator(new ProgressBarIndicator())
                             .setIndexIndicator(new NumberIndexIndicator())
                             .setImageLoader(UniversalImageLoader.with(getApplicationContext()))
